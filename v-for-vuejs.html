@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="(menu, index) in menus" :key="menu">{{ index + 1 + '-' }}{{ menu }}</li>
+    </ul>
+    <template v-for="(menu, index) in menus">
+        <div :style="customStyles">
+            <span>{{ index + 1 + ' - ' }} </span>
+            <p>{{ menu }}</p>
+        </div>
+    </template>
+    <br>
+    <button @click="addMenu()">Add</button>
+</div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            menus: ['Home', 'About', 'Account']
+        },
+        computed: {
+            customStyles: function () {
+                return {
+                    display: 'inline-block',
+                    color: 'red',
+                    margin: 10 + 'px'
+                }
+            },
+        },
+        methods: {
+            addMenu: function () {
+                this.menus.push('Test');
+            }
+        }
+    });
+</script>
+</html>

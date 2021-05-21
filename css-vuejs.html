@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        #container {
+            margin-left: 300px;
+        }
+
+        .square {
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+            background-color: black;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+<!--<div id="container">-->
+<!--    <div class="square" v-on:click="flag = !flag" v-bind:class="{red: flag}"></div>-->
+<!--    <div class="square" v-bind:class="{red: flag}"></div>-->
+<!--    <div class="square" :class="[color, {red: flag}]"></div>-->
+<!--    <div class="square"></div>-->
+
+<!--    <input type="text" v-model="color">-->
+<!--</div>-->
+<div id="app">
+    <div class="square" :style="{backgroundColor: color}"></div>
+    <div class="square" :style="customStyles"></div>
+    <div class="square"></div>
+    <input type="text" v-model="color" v-once>
+    <input type="text" v-model="width">
+    <input type="text" v-model="height">
+</div>
+</body>
+<script>
+    new Vue({
+        el: '#container',
+        data: {
+            flag: false,
+            color: 'green'
+        },
+
+    });
+</script>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            color: 'green',
+            width: 100,
+            height: 100
+        },
+        computed: {
+            customStyles: function () {
+                return {
+                    backgroundColor: this.color,
+                    width: this.width + 'px',
+                    height: this.height + 'px'
+                }
+            }
+        }
+    });
+</script>
+</html>

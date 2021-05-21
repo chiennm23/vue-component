@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <p>Yes or No?</p>
+    <button @click="isReal = !isReal">Answer</button>
+    <p v-if="isReal">Yes</p>
+    <p v-else>No</p>
+
+    <template v-if="isReal">
+        <div>Menu1</div>
+        <div>Menu2</div>
+        <div>Menu3</div>
+    </template>
+    <p v-show="isReal">test v-show</p>
+</div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            isReal: true
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div class="container">
+    <p v-html="maHtml"></p>
+    <p>{{ contentTest }}</p>
+    <input type="text" class="input-content" v-on:input="changeValue">
+    <a v-bind:href="link">VueJS</a>
+    <p v-once> {{ title }} - {{ showPost() }}</p>
+</div>
+<div id="vOn">
+    <div v-on:mousemove="toaDo">
+        <p>Bam BUTTON</p>
+        <button v-on:click="upValue">Submit</button>
+        <p v-on:mousemove.stop>Dung</p>
+        <p>{{ count }}</p>
+        <p> Toa do chuot: {{ x }} / {{ y }}</p>
+    </div>
+
+</div>
+
+<div id="keyboard">
+    <p v-if=" contentValue !== '' "> {{ contentValue }} </p>
+    <input type="text" v-on:keyup.space="keyUp" placeholder="keyUp ne">
+
+</div>
+
+<div id="binding">
+    <br>
+    <input type="text" v-model="name">
+    <p> {{ name }}</p>
+</div>
+
+<div class="computed">
+    <p>Gia tri A: {{ upA }}</p>
+    <p>Gia tri B: {{ downB }}</p>
+    <button v-on:click="a++">Tang a</button>
+    <button v-on:click="b--">Giam b</button>
+</div>
+</body>
+<script>
+    new Vue({
+        el: '.container',
+        data: {
+            contentTest: 'Hello you fuck me',
+            link: 'https://vi.vuejs.org/v2/guide/index.html',
+            title: 'djkakjdsahddad',
+            maHtml: '<a href="https://vi.vuejs.org/v2/guide/index.html">Bacccc</a>'
+        },
+
+        methods: {
+            changeValue: function (event) {
+                this.contentTest = event.target.value;
+            },
+
+            showPost: function () {
+                this.title = 'dmmmmm';
+                return this.title;
+            }
+        }
+    });
+</script>
+<script>
+    new Vue({
+        el: '#vOn',
+        data: {
+            count: 0,
+            x: 0,
+            y: 0
+        },
+        methods: {
+            upValue: function () {
+                console.log(111111);
+                this.count++;
+            },
+
+            toaDo: function (event) {
+                this.x = event.clientX;
+                this.y = event.clientY
+            },
+            //
+            // stopEven: function (event) {
+            //     event.stopPropagation();
+            // }
+        }
+    });
+</script>
+<script>
+    new Vue({
+        el: '#keyboard',
+        data: {
+            contentValue: '',
+        },
+        methods: {
+            keyUp: function (event) {
+                this.contentValue = event.target.value;
+                console.log(this.contentValue);
+            }
+        }
+    });
+</script>
+<script>
+    new Vue({
+        el: '#binding',
+        data: {
+            name: 'ChienNM'
+        },
+        methods: {}
+    });
+</script>
+<script>
+    new Vue({
+        el: '.computed',
+        data: {
+            a: 0,
+            b: 100,
+        },
+        computed: {
+            upA: function () {
+                console.log(this.a);
+                return this.a;
+            },
+
+            downB: function () {
+                console.log(this.b);
+                return this.b;
+            }
+        },
+        methods: {
+            // upA: function () {
+            //     console.log(this.a);
+            //     return this.a;
+            // },
+            //
+            // downB: function () {
+            //     console.log(this.b);
+            //     return this.b;
+            // }
+        }
+    });
+</script>
+</html>
